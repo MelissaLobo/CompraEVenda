@@ -23,24 +23,29 @@ public class ProductService {
 		productDao.create(product);
 
 	}
+
 	@Transactional
 	public boolean entityExists(Product product) {
-        return productDao.entityExists(product);
-    }
+		return productDao.entityExists(product);
+	}
 
 	@Transactional
 	public List<Product> listProduct() {
-		productDao.findAll();
-		return listProduct();
+		return productDao.findAll();
 	}
-	
-	 public Product getById(Long id) {
-	        for (Product p : productDao.findAll()) {
-	            if (p.getId() == id) {
-	                return p;
-	            }
-	        }
-	        return null;
-	    }
+
+	@Transactional
+	public void delete(Product id) {
+		productDao.destroy(id);
+	}
+
+	public Product getById(Long id) {
+		for (Product p : productDao.findAll()) {
+			if (p.getId() == id) {
+				return p;
+			}
+		}
+		return null;
+	}
 
 }
