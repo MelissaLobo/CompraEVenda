@@ -18,6 +18,7 @@
 	     <li><a href="/newAccount">Nova Conta</a></li>
 	     <li><a href="/login">Login</a></li>
 	     <li><a href="/newProduct">Novo Produto</a></li>
+	     <li><a href="/catalog">Lista de Produtos</a></li>
 	    </ul>
 	</div>
 	
