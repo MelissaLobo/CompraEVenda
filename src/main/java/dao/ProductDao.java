@@ -12,14 +12,5 @@ import model.Product;
 @Repository
 public class ProductDao extends DaoGeneric<Product, Serializable> {
 	
-	private ProductDao productDao;
-
-	 public boolean entityExists(Product product) {
-	        for (Product p : productDao.findAll()) {
-	            if (p.getProductName().equals(product.getProductName())) {
-	                return true;
-	            }
-	        }
-	        return false;
-	    }
+	
 }
