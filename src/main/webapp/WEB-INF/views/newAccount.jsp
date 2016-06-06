@@ -12,9 +12,9 @@
 </head>
 <body>
 <jsp:include page="template.jsp"/>
-<h1>Cadastro:</h1>
-	<form id="teste" class="form-signin" action="/createAccount" method="POST">
 
+	<form id="teste" class="form-signin" action="/createAccount" method="POST">
+		<h1>Nova Conta</h1>
 		Nome: <input type="text" class="form-control" name="userName"> 
 		<br>
 		Email: <input type="text" class="form-control" name="email"> 

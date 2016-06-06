@@ -51,4 +51,9 @@ body {
 	  border-top-left-radius: 0;
 	  border-top-right-radius: 0;
 	}
+	
+	 footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
 }

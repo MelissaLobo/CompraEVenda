@@ -34,14 +34,14 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/">Início</a></li>
 					<li><a href="#">Categorias</a></li>
-					<li><a href="#">Produtos</a></li>
+					<li><a href="catalog">Produtos</a></li>
 					<li><a href="#">Sua Loja</a></li>
 					<li><a href="#">Contato</a></li>
 					<%-- <li><a href="<c:url value="/logout" />">Logout</a></li> --%>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
-       				 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sua Conta</a></li>
-       				 <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+       				 <li><a href="newAccount"><span class="glyphicon glyphicon-user"></span> Sua Conta</a></li>
+       				 <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
      				
 					</ul>
 			</div>
@@ -53,13 +53,13 @@
 		<br>
 		<br>
 		<br>
-<footer class="container-fluid text-center">
+<!-- <footer class="container-fluid text-center">
   <p>Compraevenda.com Copyright 2016</p>  
   <form class="form-inline">Receber ofertas:
     <input type="email" class="form-control" size="50" placeholder="Email Address">
     <button type="button" class="btn btn-danger">Inscrever-se</button>
   </form>
-</footer>
+</footer> -->
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
