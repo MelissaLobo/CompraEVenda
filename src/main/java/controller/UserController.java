@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import model.User;
 import service.UserService;
@@ -33,18 +35,24 @@ public class UserController {
 		return "newAccount";
 	}
 
-	@RequestMapping(value= "/createAccount", method=RequestMethod.POST)
+	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
 	public String showCreateAccount(User user, BindingResult result, Model model) {
 		userService.createAccount(user);
-			System.out.println("user");
-			return "accountCreated";
-		
+		System.out.println("user");
+		return "profileUser";
+
 	}
 
-	@RequestMapping("/login")
-	public String showLogin() {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView showLogin(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+		ModelAndView modelAndView = new ModelAndView();
 
-		return "login";
+		if (logout != null) {
+			modelAndView.addObject("msg", "You've been logged out successfully.");
+		}
+		modelAndView.setViewName("login");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -58,4 +66,13 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value = "/profileUser", method = RequestMethod.GET)
+	public ModelAndView profile(User user) {
+		ModelAndView modelAndView = new ModelAndView("user");
+		userService.entityExists(user);
+		modelAndView.addObject("user", user);
+		modelAndView.addObject("pageTitle", "user.userName");
+		modelAndView.addObject("pageTitleArg", user.getUserName());
+		return modelAndView;
+	}
 }
