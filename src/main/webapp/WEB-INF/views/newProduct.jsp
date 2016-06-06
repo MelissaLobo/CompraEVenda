@@ -15,7 +15,6 @@
 
 <body>
 	<jsp:include page="template.jsp" />
-	<jsp:include page="busca.jsp" />
 
 	<div class="container">
 
