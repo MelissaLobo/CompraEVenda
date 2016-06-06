@@ -25,11 +25,6 @@ public class ProductService {
 	}
 
 	@Transactional
-	public boolean entityExists(Product product) {
-		return productDao.entityExists(product);
-	}
-
-	@Transactional
 	public List<Product> listProduct() {
 		return productDao.findAll();
 	}
@@ -39,6 +34,7 @@ public class ProductService {
 		productDao.destroy(id);
 	}
 
+	@Transactional
 	public Product getById(Long id) {
 		for (Product p : productDao.findAll()) {
 			if (p.getId() == id) {
@@ -48,4 +44,12 @@ public class ProductService {
 		return null;
 	}
 
+	public boolean entityExists(Product product) {
+	        for (Product p : productDao.findAll()) {
+	            if (p.getProductName().equals(product.getProductName())) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    }
 }

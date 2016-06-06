@@ -11,18 +11,22 @@ import dao.UserDao;
 import model.User;
 
 @Service("service")
-@Transactional
 public class UserService {
 
 	@Autowired
 	private UserDao userDao;
 
+	@Transactional
 	public void createAccount(User user) {
 		userDao.create(user);
-
 	}
 	
 	public boolean entityExists(User user) {
-        return userDao.entityExists(user);
+        for (User p : userDao.findAll()) {
+            if (p.getUserName().equals(user.getUserName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
