@@ -58,7 +58,7 @@ public class JPAConfiguration {
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/Compraevenda");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/compraevenda");
 
 		return dataSource;
 	}
