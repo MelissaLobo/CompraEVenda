@@ -5,14 +5,13 @@ package model;
  */
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "images")
 public class Images {
 
 	@Id
@@ -20,9 +19,17 @@ public class Images {
 	@Column(name = "id_image")
 	private int id;
 	private String image;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
 	private Product product;
+
+	public Images() {
+	}
+
+	public Images(int id, String image, Product product) {
+		super();
+		this.id = id;
+		this.image = image;
+		this.product = product;
+	}
 
 	public int getId() {
 		return id;
@@ -86,5 +93,4 @@ public class Images {
 			return false;
 		return true;
 	}
-
 }

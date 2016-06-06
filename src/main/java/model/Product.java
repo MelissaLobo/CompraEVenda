@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -34,21 +37,21 @@ public class Product implements Serializable {
 	@Column(name = "product_name")
 	private String productName;
 	@NotNull
-	@Min(value=0)
+	@Min(value = 0)
 	private BigDecimal price;
 	private String description;
 	private Category category;
-	@ElementCollection(fetch=FetchType.EAGER)
-	private List<String> images;
-	@ElementCollection(fetch=FetchType.EAGER)
-	private List<String> comments;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_product")
+	private List<Images> images;
 
 	public Product() {
-
 	}
 
 	public Product(Long id, String productName, BigDecimal price, String description, Category category,
-			List<String> images, List<String> comments) {
+			List<Images> images) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -56,7 +59,6 @@ public class Product implements Serializable {
 		this.description = description;
 		this.category = category;
 		this.images = images;
-		this.comments = comments;
 	}
 
 	public Long getId() {
@@ -99,20 +101,12 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
-	public List<String> getImages() {
+	public List<Images> getImages() {
 		return images;
 	}
 
-	public void setImages(List<String> images) {
+	public void setImages(List<Images> images) {
 		this.images = images;
-	}
-
-	public List<String> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<String> comments) {
-		this.comments = comments;
 	}
 
 	public static long getSerialversionuid() {
@@ -120,11 +114,16 @@ public class Product implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productName=" + productName + ", price=" + price + ", description="
+				+ description + ", category=" + category + ", images=" + images + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((images == null) ? 0 : images.hashCode());
@@ -143,11 +142,6 @@ public class Product implements Serializable {
 			return false;
 		Product other = (Product) obj;
 		if (category != other.category)
-			return false;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -176,11 +170,4 @@ public class Product implements Serializable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", productName=" + productName + ", price=" + price + ", description="
-				+ description + ", category=" + category + ", images=" + images + ", comments=" + comments + "]";
-	}
-
 }

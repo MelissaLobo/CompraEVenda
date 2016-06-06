@@ -1,17 +1,21 @@
 package model;
 
+/**
+ * @author MelissaLobo mellobomel@gmail.com
+ */
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
+@Table(name = "comments")
 public class Comments {
 
 	@Id
@@ -22,11 +26,16 @@ public class Comments {
 	private String text;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date comment_date;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
-	private Product product;
 
 	public Comments() {
+	}
+
+	public Comments(int id, String name, String text, Date comment_date) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.text = text;
+		this.comment_date = comment_date;
 	}
 
 	public int getId() {
@@ -61,18 +70,9 @@ public class Comments {
 		this.comment_date = comment_date;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 	@Override
 	public String toString() {
-		return "Comments [id=" + id + ", name=" + name + ", text=" + text + ", comment_date=" + comment_date
-				+ ", product=" + product + "]";
+		return "Comments [id=" + id + ", name=" + name + ", text=" + text + ", comment_date=" + comment_date + "]";
 	}
 
 	@Override
@@ -82,7 +82,6 @@ public class Comments {
 		result = prime * result + ((comment_date == null) ? 0 : comment_date.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((product == null) ? 0 : product.hashCode());
 		result = prime * result + ((text == null) ? 0 : text.hashCode());
 		return result;
 	}
@@ -108,11 +107,6 @@ public class Comments {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
 		if (text == null) {
 			if (other.text != null)
 				return false;
@@ -120,6 +114,4 @@ public class Comments {
 			return false;
 		return true;
 	}
-	
-	
 }
