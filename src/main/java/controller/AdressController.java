@@ -25,6 +25,5 @@ public class AdressController {
 	public String showCreateAdress(Adress adress) {
 		adressService.createAdress(adress);
 		return "adressCreated";
-
 	}
 }
