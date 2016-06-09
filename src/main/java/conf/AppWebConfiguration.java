@@ -24,6 +24,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import controller.HomeController;
 import dao.AdressDao;
 import dao.ProductDao;
+import dao.ShopDao;
 import dao.UserDao;
 import service.ProductService;
 import service.UserService;
@@ -31,7 +32,7 @@ import service.UserService;
 // Classe de configuração gerenciada pelo spring
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { HomeController.class, UserDao.class, UserService.class, ProductDao.class, ProductService.class, AdressDao.class })
+@ComponentScan(basePackageClasses = { HomeController.class, UserDao.class, UserService.class, ProductDao.class, ProductService.class, AdressDao.class, ShopDao.class })
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
