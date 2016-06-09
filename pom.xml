@@ -1,8 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>lobomarinho</groupId>
-  <artifactId>CompraEVenda</artifactId>
-  <version>0.0.1-SNAPSHOT</version><properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>lobomarinho</groupId>
+	<artifactId>CompraEVenda</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
 		<spring.version>4.2.4.RELEASE</spring.version>
 		<querydsl.version>3.3.2</querydsl.version>
 	</properties>
@@ -81,23 +83,26 @@
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>3.1.1.RELEASE</version>
+			<artifactId>spring-security-config</artifactId>
+			 <version>4.1.0.RELEASE</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>3.1.1.RELEASE</version>
+			 <version>4.1.0.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>4.0.0.RELEASE</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>4.0.0.RELEASE</version>
+			 <version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			 <version>4.1.0.RELEASE</version>
 		</dependency>
 
 		<!-- Banco de Dados -->
