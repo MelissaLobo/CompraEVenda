@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements User
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this).passwordEncoder(new Md5PasswordEncoder());
 	}
-
+		
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("melissa").password("mel123").roles("USER");
@@ -34,14 +34,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements User
 		auth.inMemoryAuthentication().withUser("dba").password("root123").roles("ADMIN", "DBA");
 	}
 
-	@Override
+	/*@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/home").access("hasRole('ROLE_USER')").and().formLogin()
 				.loginPage("/login").permitAll().loginProcessingUrl("/dologin").permitAll()
 				.usernameParameter("username").passwordParameter("password").and().logout().logoutUrl("/logout")
 				.logoutSuccessUrl("/index").permitAll();
-	}
+	}*/
 
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+		.antMatchers("/profileUser").access("hasRole('ROLE_USER')")
+		.antMatchers("/cart").access("hasRole('ROLE_USER')")
+		.antMatchers("/catalog").permitAll()
+		.antMatchers("/").permitAll()
+		.antMatchers("/index").permitAll()
+		.anyRequest().authenticated()
+		.and().formLogin();
+	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		return new User(username, "0cc175b9c0f1b6a831c399e269772661", true, true, true, true,
