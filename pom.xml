@@ -84,27 +84,32 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			 <version>4.1.0.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			 <version>4.1.0.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			 <version>4.1.0.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			 <version>4.1.0.RELEASE</version>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
 		<!-- Banco de Dados -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -150,6 +155,18 @@
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
+		</dependency>
+
+		<!-- Cache Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>
