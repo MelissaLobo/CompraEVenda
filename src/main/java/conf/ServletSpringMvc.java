@@ -7,6 +7,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 /**
  * @author MelissaLobo mellobomel@gmail.com
@@ -34,7 +35,7 @@ public class ServletSpringMvc extends AbstractAnnotationConfigDispatcherServletI
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
 		encodingFilter.setEncoding("UTF-8");
-		return new Filter[] { encodingFilter };
+		return new Filter[] {encodingFilter, new OpenEntityManagerInViewFilter()};
 	}
 
 	@Override

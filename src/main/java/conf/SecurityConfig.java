@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,6 +16,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -24,9 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements User
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this).passwordEncoder(new Md5PasswordEncoder());
+		auth.userDetailsService(this).passwordEncoder( new BCryptPasswordEncoder());
 	}
 		
+
+
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("melissa").password("mel123").roles("USER");
@@ -48,10 +51,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements User
 		.antMatchers("/profileUser").access("hasRole('ROLE_USER')")
 		.antMatchers("/cart").access("hasRole('ROLE_USER')")
 		.antMatchers("/catalog").permitAll()
-		.antMatchers("/").permitAll()
+		.antMatchers("/newAccount").permitAll()
 		.antMatchers("/index").permitAll()
+		.antMatchers("/js/**").permitAll()
+		.antMatchers("/css/**").permitAll()
+		.antMatchers("/fonts/**").permitAll()
+		.antMatchers("/").permitAll()
 		.anyRequest().authenticated()
-		.and().formLogin();
+		.and().formLogin().loginPage("/login").permitAll()
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 	
 	@Override
