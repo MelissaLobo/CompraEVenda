@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html >
 <html xmlns:ui="http://java.sun.com/jsf/facelets">
 	<!--Informacoes da Pagina -->
@@ -15,9 +18,8 @@
 
 <body>
   <div class="wrapper">
-  
-    <form class="form-signin" action="<c:url value='j_spring_security_check' />"
-method='POST'>       
+
+    <form:form servletRelativeAction="/login" class="form-signin" method="POST">             
       <h2 class="form-signin-heading">Faça seu Login</h2>
       <input type="text" class="form-control" name="j_email" placeholder="Email Address"  />
       <input type="password" class="form-control" name="j_password" placeholder="Password" />      
@@ -26,7 +28,7 @@ method='POST'>
       </label>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>  
       <span class="pull-right"><a href="/newAccount">Cadastre-se</a></span> 
-    </form>
+    </form:form>
   </div>
 
 	<!-- script references -->
