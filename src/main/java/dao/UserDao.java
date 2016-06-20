@@ -22,7 +22,7 @@ public class UserDao extends DaoGeneric<User, Serializable> implements UserDetai
 	private EntityManager manager;
 
 	public User loadUserByUsername(String email) {
-		List<User> users = manager.createQuery("from u User where u.email = :email", User.class)
+		List<User> users = manager.createQuery("select u from User u where u.email = :email", User.class)
 				.setParameter("email", email).getResultList();
 		if (users.isEmpty()) {
 			throw new UsernameNotFoundException("Usuário " + email + " não foi encontrado");
