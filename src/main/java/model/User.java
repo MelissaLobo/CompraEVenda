@@ -1,10 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 /**
  * @author MelissaLobo mellobomel@gmail.com
  */
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -36,7 +36,7 @@ public class User implements UserDetails{
 	private String email;
 	@Size(min = 3, max = 15)
 	private String password;
-	
+
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<Role>();
 
@@ -168,7 +168,7 @@ public class User implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
+
 		return this.roles;
 	}
 
@@ -184,19 +184,19 @@ public class User implements UserDetails{
 
 	@Override
 	public boolean isAccountNonLocked() {
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		
+
 		return true;
 	}
 }
