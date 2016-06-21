@@ -38,7 +38,6 @@ public class User implements UserDetails{
 	private String password;
 	
 	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "roles")
 	private List<Role> roles = new ArrayList<Role>();
 
 	@OneToMany(fetch = FetchType.LAZY)
