@@ -3,6 +3,8 @@ package controller;
  * @author MelissaLobo mellobomel@gmail.com
  */
 
+import java.math.BigDecimal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,16 +45,14 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView showLogin(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-		ModelAndView modelAndView = new ModelAndView();
-
-		if (logout != null) {
-			modelAndView.addObject("msg", "You've been logged out successfully.");
-		}
-		modelAndView.setViewName("login");
-		return modelAndView;
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginForm(BindingResult result) {
+		
+		if(result.hasErrors()){
+			return showNewAccount(null);
+		}	
+		
+		return "login";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
