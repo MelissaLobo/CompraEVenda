@@ -6,5 +6,4 @@ package model;
 public enum Category {
 
 	MODA, CASA, ESPORTE, ELETRO, BELEZA, ANTIGUIDADES, OUTROS
-
 }
