@@ -6,6 +6,7 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.ws.rs.DefaultValue;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -16,6 +17,7 @@ public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@DefaultValue("ROLE_ADMIN")
 	private String name;
 
 	public String getName() {
