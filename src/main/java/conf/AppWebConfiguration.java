@@ -13,7 +13,9 @@ import org.springframework.context.MessageSource;
  */
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
@@ -31,18 +33,24 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import com.google.common.cache.CacheBuilder;
 
 import controller.HomeController;
+import converts.CategoryToString;
+import converts.StringToCategory;
 import dao.AdressDao;
 import dao.ProductDao;
 import dao.ShopDao;
 import dao.UserDao;
 import model.Cart;
 import service.ProductService;
+import service.ShopService;
 import service.UserService;
 
 // Classe de configuração gerenciada pelo spring
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { HomeController.class, UserDao.class, UserService.class, ProductDao.class, ProductService.class, AdressDao.class, ShopDao.class, Cart.class })
+@Configuration
+@ComponentScan(basePackageClasses = { HomeController.class, UserDao.class, UserService.class, ProductDao.class,
+		ProductService.class, AdressDao.class, ShopDao.class, Cart.class, ShopService.class, CategoryToString.class,
+		StringToCategory.class })
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -87,25 +95,31 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
-	
+
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-	
+
 	@Bean
 	public CacheManager cacheManager() {
-		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
-			.maximumSize(100)
-			.expireAfterAccess(5, TimeUnit.MINUTES);
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(5,
+				TimeUnit.MINUTES);
 		GuavaCacheManager manager = new GuavaCacheManager();
 		manager.setCacheBuilder(builder);
-		
+
 		return manager;
 	}
-	
+
 	@Bean
 	public LocaleResolver localeResolver() {
 		return new CookieLocaleResolver();
+	}
+
+	// Config Enum
+	@Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addConverter(new StringToCategory());
+		registry.addConverter(new CategoryToString());
 	}
 }
