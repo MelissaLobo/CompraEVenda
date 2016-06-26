@@ -3,22 +3,22 @@ package controller;
  * @author MelissaLobo mellobomel@gmail.com
  */
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import model.Product;
+import model.User;
 import service.ProductService;
+import service.ShopService;
 
 @Controller
 public class ProductController {
@@ -26,20 +26,18 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping("/newProduct")
-	public String showNewProduct(Model model) {
-		model.addAttribute("product", new Product());
-		return "newProduct";
+	@Autowired
+	private ShopService shopService;
+
+	@RequestMapping(value = "/newProduct", method = RequestMethod.POST)
+	public ModelAndView showNewProduct() {
+		return new ModelAndView("newProduct");
 	}
 
-	@RequestMapping("/createProduct")
-	public String showCreateProduct(@Valid Product product, BindingResult result) {
-		if(result.hasErrors()){
-			return showNewProduct(null);
-		}
-		BigDecimal big = new BigDecimal(product.getPrice().toString());
-		productService.createProduct(product);
-		return "productCreated";
+	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+	public RedirectView showCreateProduct(@AuthenticationPrincipal User user, Product product) {
+		shopService.addProduct(user, product);
+		return new RedirectView("/catalog");
 	}
 
 	@RequestMapping(value = "/listProduct", method = RequestMethod.GET)
@@ -50,13 +48,13 @@ public class ProductController {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping("/productDescription/{id}")
 	public ModelAndView description(@PathVariable("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView("productDescription");
 		Product product = productService.getById(id);
 		modelAndView.addObject("product", product);
-	
+
 		return modelAndView;
 	}
 }
