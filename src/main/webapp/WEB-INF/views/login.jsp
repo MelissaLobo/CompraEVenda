@@ -11,7 +11,6 @@
 		<title>Bootstrap Login Form</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="template.html" rel="stylesheet">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
  		<link href="css/style.css" rel="stylesheet">
 	</head>
@@ -21,8 +20,8 @@
 
     <form:form servletRelativeAction="/login" class="form-signin" method="POST">             
       <h2 class="form-signin-heading">Faça seu Login</h2>
-      <input type="text" class="form-control" name="j_email" placeholder="Email Address"  />
-      <input type="password" class="form-control" name="j_password" placeholder="Password" />      
+      <input type="text" class="form-control" name="username" placeholder="Email Address"  />
+      <input type="password" class="form-control" name="password" placeholder="Password" />      
       <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
       </label>
