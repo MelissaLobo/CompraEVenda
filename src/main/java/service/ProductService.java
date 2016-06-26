@@ -18,10 +18,10 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
-
+	
+	@Transactional
 	public void createProduct(Product product) {
 		productDao.create(product);
-
 	}
 
 	@Transactional
