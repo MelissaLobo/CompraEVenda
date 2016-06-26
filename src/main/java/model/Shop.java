@@ -31,7 +31,7 @@ public class Shop {
 	@JoinColumn(name = "id_shop")
 	private List<Comments> comments;
 
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id_shop")
 	private List<Product> product;
 	
@@ -81,6 +81,14 @@ public class Shop {
 
 	public void setProduct(List<Product> product) {
 		this.product = product;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
