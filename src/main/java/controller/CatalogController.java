@@ -19,7 +19,7 @@ public class CatalogController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(value = "/catalog", method = RequestMethod.GET)
+	@RequestMapping(value = "/catalog")
 	public ModelAndView listProduct(Model model) {
 		ModelAndView modelAndView = new ModelAndView("catalog");
 		List<Product> lista = productService.listProduct();
