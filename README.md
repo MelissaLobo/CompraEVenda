@@ -3,13 +3,17 @@ Projeto em desenvolvimento de um E-Comerce de compra e venda de produtos cadastr
 
 #Frameworks e Tecnologias Utilizadas
 
+[Java](https://www.java.com/pt_BR)
 [JPA](http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html)<br/>
 [Hibernate](http://hibernate.org)<br/>
 [Maven](https://maven.apache.org)<br/>
-[Spring Security](http://projects.spring.io/spring-security)<br/>
-[Spring MVC]()<br/>
 [Spring](http://projects.spring.io/spring-framework)<br/>
+[Spring Security](http://projects.spring.io/spring-security)<br/>
+[Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)<br/>
+[Spring Milestones](https://repo.spring.io/milestone)<br/>
 [MySQL](https://www.mysql.com/)<br/>
+[Bootstrap](http://getbootstrap.com)<br/>
+
 
 #IDE's
 
