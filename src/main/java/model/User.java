@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -34,10 +35,10 @@ public class User implements UserDetails {
 	private String userName;
 	@Email
 	private String email;
-	@Size(min = 3, max = 15)
+	@Size(min = 3, max = 200)
 	private String password;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<Role>();
 
 	@OneToMany(fetch = FetchType.LAZY)
@@ -108,7 +109,7 @@ public class User implements UserDetails {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", password=" + password + ", role="
-				+ roles + ", adress=" + adress + "]";
+				+ roles + "]";
 	}
 
 	@Override
