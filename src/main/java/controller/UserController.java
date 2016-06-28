@@ -3,8 +3,6 @@ package controller;
  * @author MelissaLobo mellobomel@gmail.com
  */
 
-import java.math.BigDecimal;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,12 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.Role;
 import model.User;
 import service.UserService;
 
@@ -38,20 +35,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/createAccount", method = RequestMethod.POST)
-	public String showCreateAccount(User user, BindingResult result, Model model) {
-		userService.createAccount(user);
+	public String showCreateAccount(User user, Role roles) {
+		userService.createAccount(user, roles);
 		System.out.println("user");
 		return "profileUser";
-
+		
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(BindingResult result) {
-		
-		if(result.hasErrors()){
-			return showNewAccount(null);
-		}	
-		
+	public String loginForm() {
 		return "login";
 	}
 
