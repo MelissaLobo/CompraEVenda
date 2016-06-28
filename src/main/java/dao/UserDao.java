@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
+import model.Role;
 import model.User;
 
 @Repository // Mapeia a Classe
@@ -22,7 +23,7 @@ public class UserDao extends DaoGeneric<User, Serializable> implements UserDetai
 	private EntityManager manager;
 
 	public User loadUserByUsername(String email) {
-		List<User> users = manager.createQuery("select u from User u where u.email = :email", User.class)
+		List<User> users = manager.createQuery("select u from User u where u.userName = :email", User.class)
 				.setParameter("email", email).getResultList();
 		if (users.isEmpty()) {
 			throw new UsernameNotFoundException("Usuário " + email + " não foi encontrado");
@@ -49,4 +50,10 @@ public class UserDao extends DaoGeneric<User, Serializable> implements UserDetai
 	 * 
 	 * if (users.size() > 0) { return users.get(0); } else { return null; } }
 	 */
+
+	public List<Role> findIdRole(Role role) {
+		List<Role> roles = manager.createQuery("from Role where name= :name", Role.class)
+				.setParameter("name", "ROLE_ADMIN").getResultList();
+		return roles;
+	}
 }
