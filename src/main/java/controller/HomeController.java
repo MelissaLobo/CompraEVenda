@@ -14,4 +14,16 @@ public class HomeController {
 		System.out.println("Entering the Home Compra e Venda");
 		return "index";
 	}
+	
+	@RequestMapping("/category")
+	public String categoroy() {
+		System.out.println("Categorias");
+		return "category";
+	}
+	
+	@RequestMapping("/contatoEmpresa")
+	public String contatoEmpresa() {
+		System.out.println("Contato da Empresa");
+		return "contatoEmpresa";
+	}
 }
