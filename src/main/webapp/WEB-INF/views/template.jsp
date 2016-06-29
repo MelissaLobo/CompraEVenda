@@ -35,12 +35,13 @@
 					<li><a href="/">Início</a></li>
 					<li><a href="#">Categorias</a></li>
 					<li><a href="catalog">Produtos</a></li>
-					<li><a href="#">Sua Loja</a></li>
-					<li><a href="#">Contato</a></li>
+					<li><a href="profileUser">Sua Loja</a></li>
+					<li><a href="contatoEmpresa">Contato</a></li>
 					<%-- <li><a href="<c:url value="/logout" />">Logout</a></li> --%>
 				</ul>
 					<ul class="nav navbar-nav navbar-right">
-       				 <li><a href="newAccount"><span class="glyphicon glyphicon-user"></span> Sua Conta</a></li>
+					<li><a href="newAccount"><span class="glyphicon glyphicon-pencil"></span> Nova Conta</a></li>
+       				 <li><a href="login"><span class="glyphicon glyphicon-user"></span> Sua Conta</a></li>
        				 <li><a href="cart"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
      				
 					</ul>
